@@ -31,5 +31,5 @@ RUN openssl req -x509 -nodes -days 10 -subj "/C=RU/ST=Tatarstan/O=School 21/CN=l
 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key \
 -out /etc/ssl/certs/nginx-selfsigned.crt
 COPY default.conf /etc/nginx/conf.d
-COPY ./nginx/start.sh .
+COPY start.sh .
 ENTRYPOINT sh start.sh

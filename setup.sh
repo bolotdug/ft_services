@@ -8,7 +8,7 @@ eval $(minikube -p minikube docker-env)
 
 kubectl apply -f configmap.yaml
 
-docker build -t nginx-image ./nginx
+docker build -t nginx-image ./nginx/
 kubectl apply -f ./nginx/nginx.yaml
 
 minikube dashboard &
