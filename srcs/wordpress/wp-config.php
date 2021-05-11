@@ -29,7 +29,7 @@ define( 'DB_USER', 'adminwp' );
 define( 'DB_PASSWORD', 'adminwp' );
 
 /** Имя сервера MySQL */
-define( 'DB_HOST', 'localhost' );
+define( 'DB_HOST', 'mysql' );
 
 /** Кодировка базы данных для создания таблиц. */
 define( 'DB_CHARSET', 'utf8' );
