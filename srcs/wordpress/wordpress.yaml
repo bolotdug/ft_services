@@ -5,13 +5,13 @@ metadata:
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
 spec:
+  selector:
+    app: wp
   type: LoadBalancer
   ports:
-  - name: http
-    port: 5050
-    targetPort: 5050
-  selector:
-    app: mysqlPod
+    - protocol: TCP
+      port: 5050
+      targetPort: 5050
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -20,17 +20,16 @@ metadata:
 spec:
   template:
     metadata:
-      name: wp-pod
       labels:
-        app: wpPod
+        app: wp
     spec:
       containers: 
-        - name: wp-container
+        - name: wp
           image: wp-image
           imagePullPolicy: Never
           ports:
-              containerPort: 5050
+            - containerPort: 5050
   replicas: 1
   selector:
     matchLabels:
-      app: wpPod
+      app: wp

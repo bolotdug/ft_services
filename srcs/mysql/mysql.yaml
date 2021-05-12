@@ -22,8 +22,8 @@ spec:
   storageClassName: manual
   capacity:
     storage: 1Gi
-  accessMode:
-  - ReadWriteOnce
+  accessModes:
+    - ReadWriteOnce
   hostPath:
     path: "/mnt/data"
 ---
@@ -39,8 +39,8 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  accessMode:
-  - ReadWriteOnce
+  accessModes:
+    - ReadWriteOnce
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -51,11 +51,14 @@ spec:
     metadata:
       name: mysql-pod
       labels:
-        app: mysqlPod
-        type: mysql
+        app: mysql
     spec:
+      volumes:
+        - name: mysql-pv-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc
       containers: 
-        - name: mysql_container
+        - name: mysql
           image: mysql-image
           imagePullPolicy: Never
           ports:
@@ -63,7 +66,7 @@ spec:
               containerPort: 3306
           volumeMounts:
             - mountPath: /var/lib/mysql
-              name: mysql_container
+              name: mysql-pv-storage
   replicas: 1
   selector:
     matchLabels:

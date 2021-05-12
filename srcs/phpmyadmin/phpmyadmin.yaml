@@ -16,7 +16,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginxdeploy
+  name: phpma-deploy
 spec:
   template:
     metadata:
@@ -26,7 +26,7 @@ spec:
         type: phpma
     spec:
       containers: 
-        - name: phpma_container
+        - name: phpma-container
           image: phpma-image
           imagePullPolicy: Never
           ports:
