@@ -3,10 +3,11 @@ FROM alpine:3.12
 EXPOSE 3306
 RUN apk update
 
-RUN apk add mariadb openrc mysql mysql-client
+RUN apk add openrc mysql mysql-client
 
-COPY wp_base.sql wp_base.sql
-COPY phpma_base.sql phpma_base.sql
+COPY wordpress.sql wordpress.sql
+# COPY phpmyadmin.sql phpmyadmin.sql
+COPY mydb.cnf /etc/mysql/my.cnf
 COPY db.sh .
 RUN chmod +x db.sh
 
